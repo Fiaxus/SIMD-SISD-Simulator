@@ -2,7 +2,7 @@ export type Lang = "tr" | "en";
 
 export const dict = {
   tr: {
-    brand: "VEKTÖR.SIM",
+    brand: "SIMD-SISD.SIM",
     tagline: "SIMD vs SISD — Vektör İşlemci Mimarisi Simülasyonu",
     subtitle:
       "Klasik tek çekirdekli işlemci ile geniş veri yollarına sahip SIMD vektör işlemcisini, clock cycle bazında yan yana görselleştirin.",

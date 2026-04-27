@@ -1,0 +1,273 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * SIMD Simülatörü — "Deep Space Tech" teması.
+ * Apple / Linear / Vercel havası. Soğuk-mavi karanlık + amber/cyan kontrast.
+ * Tüm renkler oklch formatında.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  /* Semantic accent tokens — eski neon-* isimleri korunuyor ki component'ler kırılmasın */
+  --color-neon-cyan: var(--neon-cyan);
+  --color-neon-green: var(--neon-green);
+  --color-neon-magenta: var(--neon-magenta);
+  --color-neon-amber: var(--neon-amber);
+  --color-grid: var(--grid);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/spacegrotesk/v16/V8mDoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj7oUUxjLA.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2") format("woff2");
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* Deep space — soğuk mavi-mor karanlık */
+  --background: oklch(0.14 0.02 250);
+  --foreground: oklch(0.97 0.01 250);
+
+  --surface: oklch(0.18 0.02 252);
+  --surface-2: oklch(0.22 0.025 254);
+
+  --card: oklch(0.18 0.02 252);
+  --card-foreground: oklch(0.97 0.01 250);
+  --popover: oklch(0.18 0.02 252);
+  --popover-foreground: oklch(0.97 0.01 250);
+
+  /* İki aksan — sıcak amber + elektrik cyan
+   * Eski neon-* token'ları semantik olarak yeniden eşleniyor:
+   *  - neon-cyan   → elektrik cyan (modern/SIMD)
+   *  - neon-magenta→ sıcak amber (geleneksel/SISD) — magenta isim ama renk amber
+   *  - neon-green  → mint (success / output)
+   *  - neon-amber  → sıcak amber alias
+   */
+  --neon-cyan: oklch(0.78 0.15 200);
+  --neon-magenta: oklch(0.78 0.16 65);
+  --neon-green: oklch(0.82 0.14 165);
+  --neon-amber: oklch(0.78 0.16 65);
+
+  --primary: oklch(0.78 0.15 200);
+  --primary-foreground: oklch(0.14 0.02 250);
+
+  --secondary: oklch(0.22 0.025 254);
+  --secondary-foreground: oklch(0.97 0.01 250);
+
+  --muted: oklch(0.20 0.02 254);
+  --muted-foreground: oklch(0.65 0.02 254);
+
+  --accent: oklch(0.78 0.16 65);
+  --accent-foreground: oklch(0.14 0.02 250);
+
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.98 0.01 250);
+
+  --border: oklch(0.28 0.02 254 / 60%);
+  --input: oklch(0.24 0.02 254);
+  --ring: oklch(0.78 0.15 200);
+
+  --grid: oklch(0.78 0.15 200 / 4%);
+
+  --chart-1: oklch(0.78 0.15 200);
+  --chart-2: oklch(0.78 0.16 65);
+  --chart-3: oklch(0.82 0.14 165);
+  --chart-4: oklch(0.70 0.18 280);
+  --chart-5: oklch(0.75 0.12 220);
+
+  /* Gradients & shadows — Deep Space */
+  --gradient-cyber: linear-gradient(135deg, oklch(0.78 0.15 200), oklch(0.78 0.16 65));
+  --gradient-text: linear-gradient(180deg, oklch(1 0 0), oklch(0.65 0.02 254));
+  --gradient-grid: radial-gradient(ellipse at top, oklch(0.78 0.15 200 / 8%), transparent 60%);
+
+  --shadow-neon-cyan: 0 0 40px oklch(0.78 0.15 200 / 35%), 0 0 80px oklch(0.78 0.15 200 / 15%);
+  --shadow-neon-magenta: 0 0 40px oklch(0.78 0.16 65 / 35%), 0 0 80px oklch(0.78 0.16 65 / 15%);
+  --shadow-neon-green: 0 0 40px oklch(0.82 0.14 165 / 35%), 0 0 80px oklch(0.82 0.14 165 / 15%);
+  --shadow-card: 0 8px 24px -8px oklch(0 0 0 / 40%), 0 0 0 1px oklch(1 0 0 / 4%);
+}
+
+.dark {
+  /* same — we are dark by default */
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-image:
+      radial-gradient(ellipse 100% 60% at 50% -10%, oklch(0.78 0.15 200 / 8%), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 90% 100%, oklch(0.6 0.2 280 / 6%), transparent 60%),
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: oklch(0.78 0.15 200 / 40%);
+    color: oklch(0.97 0.01 250);
+  }
+}
+
+/* ===== Deep Space utilities ===== */
+@layer utilities {
+  /* Çok daha sakin glow — Deep Space estetiği için neon hissi yumuşatıldı */
+  .text-glow-cyan { text-shadow: 0 0 12px oklch(0.78 0.15 200 / 35%); }
+  .text-glow-magenta { text-shadow: 0 0 12px oklch(0.78 0.16 65 / 35%); }
+  .text-glow-green { text-shadow: 0 0 12px oklch(0.82 0.14 165 / 35%); }
+
+  .border-glow-cyan { box-shadow: var(--shadow-neon-cyan); }
+  .border-glow-magenta { box-shadow: var(--shadow-neon-magenta); }
+  .border-glow-green { box-shadow: var(--shadow-neon-green); }
+
+  .bg-gradient-cyber { background: var(--gradient-cyber); }
+
+  .text-gradient {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Glassmorphism panel — Deep Space */
+  .panel {
+    background: oklch(0.18 0.02 252 / 60%);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid oklch(0.28 0.02 254 / 60%);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+  }
+
+  .panel-magenta {
+    border-color: oklch(0.78 0.16 65 / 30%);
+  }
+
+  /* Scanlines kaldırıldı — modern Deep Space estetiğine uymuyor.
+   * Yerine çok hafif bir noise/grain bırakıyoruz ki layout aynı kalsın. */
+  .scanlines::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at top right, oklch(0.78 0.15 200 / 4%), transparent 50%);
+    border-radius: inherit;
+  }
+}
+
+/* ===== Keyframes ===== */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px currentColor, 0 0 40px color-mix(in oklab, currentColor 40%, transparent); opacity: 0.95; }
+  50% { box-shadow: 0 0 30px currentColor, 0 0 60px color-mix(in oklab, currentColor 50%, transparent); opacity: 1; }
+}
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.92; }
+}
+@keyframes data-flow {
+  0% { transform: translateX(-100%); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+@keyframes grid-pan {
+  0% { background-position: 0 0; }
+  100% { background-position: 32px 32px; }
+}
+@keyframes blink-caret {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.animate-pulse-glow { animation: pulse-glow 2.4s ease-in-out infinite; }
+.animate-flicker { animation: flicker 4s linear infinite; }
+.animate-data-flow { animation: data-flow 1.2s ease-in-out infinite; }
+.caret::after { content: "▮"; margin-left: 4px; animation: blink-caret 1s steps(1) infinite; color: var(--neon-cyan); }
+
+/* ===== Custom scrollbar — Deep Space tema ===== */
+.scrollbar-deep {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0.35 0.02 254 / 0.6) transparent;
+}
+.scrollbar-deep::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.scrollbar-deep::-webkit-scrollbar-track {
+  background: transparent;
+  border-left: 1px solid oklch(0.28 0.02 254 / 0.4);
+}
+.scrollbar-deep::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, oklch(0.35 0.02 254 / 0.7), oklch(0.28 0.02 254 / 0.5));
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: background 0.2s ease;
+}
+.scrollbar-deep::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, oklch(0.78 0.15 200 / 0.6), oklch(0.78 0.16 65 / 0.4));
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+.scrollbar-deep::-webkit-scrollbar-corner {
+  background: transparent;
+}
